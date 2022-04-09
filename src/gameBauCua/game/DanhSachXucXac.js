@@ -1,12 +1,12 @@
 import React from 'react';
 import Xucxac from './XucXac';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 
 const Danhsachxucxac = () => {
 
     const {mangXucXac} = useSelector(state => state.GameBauCuaReducer)
 
-    
+    const dispatch = useDispatch();
 
     return (
         <div className='mt-5 ml-5'>
@@ -23,7 +23,12 @@ const Danhsachxucxac = () => {
                     </div>
                 </div>
                 <div className='text-center mr-5'>
-                    <button className='btn btn-danger' style={{width:75,height:50,fontSize:25}}>
+                    <button onClick={()=>{
+                        dispatch({
+                            type:'PLAY_GAME_BAU_CUA',
+
+                        })
+                    }} className='btn btn-danger' style={{width:75,height:50,fontSize:25}}>
                         Xóc
                     </button>
                 </div>

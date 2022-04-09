@@ -39,8 +39,50 @@ export const GameBauCuaReducer =  (state = initialState, action) => {
         }
 
         state.danhSachCuoc = danhSachCuocUpdate;
-        console.log(state.danhSachCuoc);
+        return {...state}
+    }
+
+    case 'PLAY_GAME_BAU_CUA':{
         console.log(state.tongDiem);
+        const mangXucXacNgauNhien = [];
+
+        for (let i = 0; i < 3; i++) {
+            // tạo số ngấu nhiên 0-5
+            let soNgauNhien = Math.floor(Math.random() * 6);
+            const xucXacNgauNhien = state.danhSachCuoc[soNgauNhien];
+            mangXucXacNgauNhien.push(xucXacNgauNhien);
+        }
+        state.mangXucXac = mangXucXacNgauNhien;
+        
+        //thưởng tiền
+        mangXucXacNgauNhien.forEach((xucXacNN,index)=>{
+            let indexDSCuoc = state.danhSachCuoc.findIndex(qc=>qc.ma === xucXacNN.ma);
+            if(index !== -1 ){
+                state.tongDiem += state.danhSachCuoc[indexDSCuoc].diemCuoc;
+            }
+        })
+
+        //xử lý hoàn tiền
+        state.danhSachCuoc.forEach((qc,index)=>{
+            let indexXucXacNN = mangXucXacNgauNhien.findIndex(XucXacNN => XucXacNN.ma === qc.ma);
+            if(indexXucXacNN !== -1){
+                state.tongDiem += qc.diemCuoc;
+            }
+        })
+
+        state.danhSachCuoc  = state.danhSachCuoc.map((qc,index)=>{
+            return {...qc,diemCuoc:0}
+        })
+
+        return {...state}
+    }
+
+    case 'CHOI_LAI':{
+        state.tongDiem = 1000;
+        state.danhSachCuoc = state.danhSachCuoc.map((qc,index)=>{
+            return {...qc,diemCuoc:0}
+        });
+        return {...state}
     }
  
   default:
