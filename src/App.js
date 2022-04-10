@@ -6,8 +6,8 @@ import GameBauCua from './gameBauCua/game/GameBauCua';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-
 function App() {
+
   return (
     <div className="App">
       <GameBauCua />

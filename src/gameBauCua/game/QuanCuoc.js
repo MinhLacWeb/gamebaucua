@@ -1,10 +1,19 @@
 import { Button } from 'bootstrap';
-import React from 'react';
+import React,{ useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSpring, animated } from 'react-spring'
+
+
 
 const Quancuoc = (props) => {
 
     const dispatch = useDispatch();
+
+    // const propsUseSpring = useSpring({
+    //     to:{scale:1},
+    //     from:{scale:0}
+    // });
+  
 
     const {quanCuoc} = props;
   

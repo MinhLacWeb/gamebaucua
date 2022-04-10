@@ -25,7 +25,7 @@ export const GameBauCuaReducer =  (state = initialState, action) => {
         //tìm trong danh sách cược => quân cược nào đc click thì sẽ tăng giảm điểm
         const danhSachCuocUpdate = [...state.danhSachCuoc];
         const index = danhSachCuocUpdate.findIndex(qc => qc.ma === action.quanCuoc.ma);
-        if(index != -1){
+        if(index !== -1){
             if(action.tangGiam){
                 if(state.tongDiem > 0){
                     danhSachCuocUpdate[index].diemCuoc += 100;
